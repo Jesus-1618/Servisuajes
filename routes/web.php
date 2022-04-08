@@ -26,3 +26,8 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+//Ruta de vista registrar empresas
+Route::get('/registrarEmpresa','Empresas\registrarEmpresas@create')->name('registrarEmpresas.create');
+
+Route::post('/registrarEmpresa1','Empresas\registrarEmpresas@store')->name('registrarEmpresas.store');
