@@ -19,6 +19,16 @@
                     </script>"!!}
     @endif
 
+    @if (session()->has('Exito1'))
+                    <div class="alert alert-success" role="alert">
+                    {{session ('Exito1')}}
+                    </div>
+                
+                    {!!"<script>
+                    Swal.fire('Genial','Datos Guardados Correctamente','success')
+                    </script>"!!}
+    @endif
+
         <div class="container">
             <form action="{{ route('registrarEmpresas.store') }}" method="POST">
                 {!!csrf_field()!!}
@@ -56,6 +66,68 @@
                 </div>
             </div>
             
+        </div>
+        <br><br><br>
+
+        <div class="container">
+            <h1 style="color: #1868d1 ">Registrar Empresa</h1>
+
+            <form action="{{ route('registrarContacto.store') }}" method="post">
+                {!!csrf_field()!!}
+                <div class="row">
+                
+                        <div class="col-5">
+                            <label for="">Nombre:</label>
+                            <input class="form-control" type="text" name="nombre"  aria-label="default input example">
+                            {!! $errors->first('nombre', '<span class="text-danger">:message</span>') !!}
+                        </div>
+
+                        <div class="col-5">
+                            <label for="">Departamento:</label>
+                            <select name="departamento" class="form-select" aria-label="Default select example">
+                                <option value="" selected disabled>--Seleccionar una opción--</option>
+                                <option value="Ventas">Ventas</option>
+                                <option value="Diseño">Diseño</option>
+                                <option value="Ingenieria">Ingeniería</option>
+                            </select>
+                            {!! $errors->first('departamento', '<span class="text-danger">:message</span>') !!}
+                        </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-5">
+                        <label for="">Correo:</label>
+                        <input class="form-control" type="email" name="correo"  aria-label="default input example">
+                        {!! $errors->first('correo', '<span class="text-danger">:message</span>') !!}
+                    </div>
+                    <div class="col-5">
+                        <label for="">Celular:</label>
+                        <input class="form-control" type="number" name="celular"  aria-label="default input example">
+                        {!! $errors->first('celular', '<span class="text-danger">:message</span>') !!}
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-5">
+                        <label for="">Teléfono:</label>
+                        <input class="form-control" type="number" name="telefono"  aria-label="default input example">
+                        {!! $errors->first('telefono', '<span class="text-danger">:message</span>') !!}
+                    </div>
+                    <div class="col-5">
+                        <label for="">Empresa:</label>
+                        <select name="empresa" class="form-select" aria-label="Default select example">
+                            <option value="" selected disabled>--Seleccionar una opción--</option>
+                            <option value="Arpix">Arpix</option>
+                            <option value="Nestle">Nestle</option>
+                            <option value="Colgate">Colgate</option>
+                        </select>
+                        {!! $errors->first('empresa', '<span class="text-danger">:message</span>') !!}
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-3"> 
+                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                    </div>
+                </div>
+            </form>
         </div>
     
 

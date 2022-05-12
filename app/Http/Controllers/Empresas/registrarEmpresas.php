@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Empresas;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\rempresas;
+use App\Http\Requests\registrarcontactoempresa;
 use DB;
 
 class registrarEmpresas extends Controller
@@ -43,6 +44,19 @@ class registrarEmpresas extends Controller
             'nombre' => $request ->input('nombre_empresa'),
         ]);
         return redirect()->route('registrarEmpresas.create')->with('Exito','Datos Guardados Correctamente');
+    }
+
+    public function store1(registrarcontactoempresa $request1)
+    {
+        DB::table('contacto_empresas')->insert([
+            'nombre_contacto' => $request1 ->input('nombre'),
+            'departamento' => $request1 ->input('departamento'),
+            'correo' => $request1 ->input('correo'),
+            'celular' => $request1 ->input('celular'),
+            'telefono' => $request1 ->input('telefono'),
+            'empresa' => $request1 ->input('empresa')
+        ]);
+        return redirect()->route('registrarEmpresas.create')->with('Exito1','Datos Guardados Correctamente');
     }
 
     /**
