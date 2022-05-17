@@ -30,4 +30,7 @@ Route::middleware([
 //Ruta de vista registrar empresas
 Route::get('/registrarEmpresa','Empresas\registrarEmpresas@create')->name('registrarEmpresas.create');
 
+//Ruta de función para registrar empresa
 Route::post('/registrarEmpresa1','Empresas\registrarEmpresas@store')->name('registrarEmpresas.store');
+//Ruta de función para registrar contacto empresa
+Route::post('/registrarEmpresa2','Empresas\registrarEmpresas@store1')->name('registrarContacto.store');
