@@ -27,6 +27,9 @@ Route::middleware([
     })->name('dashboard');
 });
 
+//Rutas Administracion
+Route::get('/homeAdministracion','Administracion\homeAdministracion@create')->name('homeAdministracion.create');
+
 //Ruta de vista registrar empresas
 Route::get('/registrarEmpresa','Empresas\registrarEmpresas@create')->name('registrarEmpresas.create');
 
