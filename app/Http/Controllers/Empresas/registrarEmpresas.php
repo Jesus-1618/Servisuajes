@@ -67,8 +67,11 @@ class registrarEmpresas extends Controller
      */
     public function show($id)
     {
-        //
+        $contactos = DB::table('contacto_empresas')
+        ->where('id','id')
+        ->first();
 
+        return view('ver_contacto', compact('contactos'));
 
     }
 
