@@ -42,6 +42,9 @@ class registrarEmpresas extends Controller
     {
         DB::table('empresas')->insert([
             'nombre' => $request ->input('nombre_empresa'),
+            'direccion_principal' => $request ->input('direccion_principal'),
+            'telefono_principal' => $request ->input('telefono_principal'),
+            'correo_principal' => $request ->input('correo_principal'),
         ]);
         return redirect()->route('registrarEmpresas.create')->with('Exito','Datos Guardados Correctamente');
     }

@@ -1,0 +1,35 @@
+:root {
+    --fondo: #f8f8f8;
+    --color-principal: #025c90;
+    --color-rojo: #e72a2a;
+    --color-gris: #6C757D;
+  }
+  
+body{
+    background-color: var(--fondo);
+}
+.titulo{
+    font-size: 2.7rem;
+    color: var(--color-principal);
+    font-family: 'Segoe UI', Tahoma;
+    font-weight: 600;
+}
+.subtitulo{
+    font-size: 2rem;
+    color: var(--color-gris);
+    font-family: 'Segoe UI', Tahoma;
+    font-weight: 600;
+}
+.texto{
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma;
+    font-weight: 400;
+}
+
+thead th{
+    background-color: var(--color-principal) !important;
+    color: var(--fondo);
+}
+.formulario{
+    padding-right: 2rem;
+}

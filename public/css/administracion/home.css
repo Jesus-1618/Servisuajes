@@ -1,41 +1,31 @@
-root{
-    --color-principal: #025c90;    
-    --color-blanco: #f8f9fa;
-    --color-rojo: #e72a2a;
-}
-body{
-    background-color: var(--color-blanco)
-}
-.titulo{
-    color: var(--color-principal);
-    font-family: 'Lato', sans-serif;
-}
-.texto{
-    font-family: 'Lato', sans-serif;
-}
 .bottom-radious {
     border-radius: 0px 0px 10px 40px;
   }
   
-  .text-right {
+.text-right {
     text-align: right;
   }
   
-  .d-col {
+.d-col {
     /* height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  .icono-dashboard{
+.icono-dashboard{
     margin-left: 30%;
     margin-top: 30%;
     font-size: 2.5em;
   }
-  .estilos-encabezado{
-      background: var(--color-principal);
-      color: var(--color-blanco);
+.estilos-encabezado{
+    background: var(--color-principal);
+    color: var(--color-blanco);
   }
-  .titulo-b{
-      color: var(--color-rojo);
+.titulo-b{
+    color: var(--color-rojo);
+  }
+
+  .DTarjeta{
+    background-color: var(--color-principal);
+    color: white;
   }
