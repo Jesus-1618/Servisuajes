@@ -32,12 +32,144 @@
                     Swal.fire('Genial','Datos Guardados Correctamente','success')
                     </script>"!!}
     @endif
+<<<<<<< HEAD
     <!--TITULO-->
     <div class="container">
         <div class="">
             <h1 class="titulo">Alta de clientes</h1>
             <p class="texto">Podras dar la alta de clientes de servisuajes y administrar la agenda de la empresa</p>
             <hr class="my-2">
+=======
+
+    <!--Actualizar Contacto-->
+    @if (session()->has('Exito2'))
+        <div class="alert alert-success" role="alert">
+        {{session ('Exito2')}}
+        </div>
+
+        {!!"<script>
+        Swal.fire('Genial','Datos Actualizados Correctamente','success')
+        </script>"!!}
+    @endif
+
+    <!--Eliminar Contacto-->
+    @if (session()->has('Exito3'))
+        <div class="alert alert-success" role="alert">
+        {{session ('Exito3')}}
+        </div>
+
+        {!!"<script>
+        Swal.fire('Genial','Datos Borrados Correctamente','success')
+        </script>"!!}
+    @endif
+
+        <div class="container">
+            <form action="{{ route('registrarEmpresas.store') }}" method="POST">
+                {!!csrf_field()!!}
+
+                <div class="row">
+                    <h1 style="color: #1868d1 ">Registrar Empresa</h1>
+                    <div class="col-5">
+                        <label for="">Nombre Empresa:</label> 
+                        <input class="form-control" type="text" name="nombre_empresa"  aria-label="default input example">
+                        {!! $errors->first('nombre_empresa', '<span class="text-danger">:message</span>') !!}
+                        <br>
+                        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+                    </div>
+            </form>
+                <div class="col-5">
+                    <table class="table table-striped table-bordered table-sm mt-2">
+                        <thead>
+                          <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre Empresa</th>
+                            <th scope="col">Agregar Contacto</th>
+                            <th scope="col">Ver</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($verEmpresas as $DI)
+                                <tr class="table-white">
+                                    <td>{{$DI->id}}</td>
+                                    <td>{{$DI->nombre}}</td>
+                                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal {{ $DI->id }}">
+                                        Click aquí!
+                                    </button></td>
+                                    <td class="text-center"><a href="{{ route('verContacto.show', $DI->id) }}" ><input type="submit" class="btn btn-success btn-sm" value="Click aquí!"></td> </a></td>
+                                    <div class="modal fade" id="exampleModal {{ $DI->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel2">Agregar Contacto: {{ $DI->nombre }}</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{ route('registrarContacto.store') }}" method="post">
+                                                    {!!csrf_field()!!}
+                                                    <div class="row">
+                
+                                                        <div class="col">
+                                                            <label for="">Nombre:</label>
+                                                            <input class="form-control" type="text" name="nombre"  aria-label="default input example">
+                                                            {!! $errors->first('nombre', '<span class="text-danger">:message</span>') !!}
+                                                        </div>
+                                
+                                                        <div class="col">
+                                                            <label for="">Departamento:</label>
+                                                            <select name="departamento" class="form-select" aria-label="Default select example">
+                                                                <option value="" selected disabled>--Seleccionar una opción--</option>
+                                                                <option value="Ventas">Ventas</option>
+                                                                <option value="Diseño">Diseño</option>
+                                                                <option value="Ingenieria">Ingeniería</option>
+                                                            </select>
+                                                            {!! $errors->first('departamento', '<span class="text-danger">:message</span>') !!}
+                                                        </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col">
+                                                        <label for="">Correo:</label>
+                                                        <input class="form-control" type="email" name="correo"  aria-label="default input example">
+                                                        {!! $errors->first('correo', '<span class="text-danger">:message</span>') !!}
+                                                    </div>
+                                                    <div class="col">
+                                                        <label for="">Celular:</label>
+                                                        <input class="form-control" type="number" name="celular"  aria-label="default input example">
+                                                        {!! $errors->first('celular', '<span class="text-danger">:message</span>') !!}
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-2">
+                                                    <div class="col-6">
+                                                        <label for="">Teléfono:</label>
+                                                        <input class="form-control" type="number" name="telefono"  aria-label="default input example">
+                                                        {!! $errors->first('telefono', '<span class="text-danger">:message</span>') !!}
+                                                    </div>
+                                                    <div class="col d-none">
+                                                        <label for="">Empresa:</label>
+                                                        <input class="form-control" type="number" name="empresa"  aria-label="default input example" value="{{ $DI->id }}">
+                                                        {!! $errors->first('empresa', '<span class="text-danger">:message</span>') !!}
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                            <button type="submit" class="btn btn-primary">Guardar</button>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                            @endforeach
+
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+            
+>>>>>>> cfa25690013a6576d8d0433dc4545011e56c9b46
         </div>
 
     </div>
