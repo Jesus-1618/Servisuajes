@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\rempresas;
 use App\Http\Requests\registrarcontactoempresa;
+use App\Http\Requests\actualizar_contacto;
 use DB;
 
 class registrarEmpresas extends Controller
@@ -68,10 +69,10 @@ class registrarEmpresas extends Controller
     public function show($id)
     {
         $contactos = DB::table('contacto_empresas')
-        ->where('id','id')
-        ->first();
+        ->where('empresa','=', $id)
+        ->get();
 
-        return view('ver_contacto', compact('contactos'));
+        return view('Empresas-Empleados.ver_contacto', compact('contactos'));
 
     }
 
@@ -93,9 +94,17 @@ class registrarEmpresas extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(actualizar_contacto $request2, $id)
     {
-        //
+        DB::table('contacto_empresas')->where('id',$id)->update([
+            'nombre_contacto' => $request2 ->input('nombre'),
+            'departamento' => $request2 ->input('departamento'),
+            'correo' => $request2 ->input('correo'),
+            'celular' => $request2 ->input('celular'),
+            'telefono' => $request2 ->input('telefono'),
+        ]);
+
+        return redirect()->route('registrarEmpresas.create')->with('Exito2','Datos Actualizados Correctamente');
     }
 
     /**
@@ -106,6 +115,7 @@ class registrarEmpresas extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('contacto_empresas')->where('id',$id)->delete();
+        return redirect()->route('registrarEmpresas.create')->with('Exito3','Datos Borrados Correctamente');
     }
 }

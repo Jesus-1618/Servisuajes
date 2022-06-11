@@ -37,3 +37,9 @@ Route::post('/registrarEmpresa2','Empresas\registrarEmpresas@store1')->name('reg
 
 //Ruta ver contactos x id empresa
 Route::get('/ver_contacto/{id}','Empresas\registrarEmpresas@show')->name('verContacto.show');
+
+//Ruta actualizar contacto
+Route::put('/actualizar_contacto/{id}','Empresas\registrarEmpresas@update')->name('actualizarcontacto.put');
+
+//Ruta Eliminar contacto
+Route::delete('/eliminar_contacto/{id}','Empresas\registrarEmpresas@destroy')->name('eliminarcontacto.delete');

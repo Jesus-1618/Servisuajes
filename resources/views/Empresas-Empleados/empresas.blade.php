@@ -32,6 +32,28 @@
                     </script>"!!}
     @endif
 
+    <!--Actualizar Contacto-->
+    @if (session()->has('Exito2'))
+        <div class="alert alert-success" role="alert">
+        {{session ('Exito2')}}
+        </div>
+
+        {!!"<script>
+        Swal.fire('Genial','Datos Actualizados Correctamente','success')
+        </script>"!!}
+    @endif
+
+    <!--Eliminar Contacto-->
+    @if (session()->has('Exito3'))
+        <div class="alert alert-success" role="alert">
+        {{session ('Exito3')}}
+        </div>
+
+        {!!"<script>
+        Swal.fire('Genial','Datos Borrados Correctamente','success')
+        </script>"!!}
+    @endif
+
         <div class="container">
             <form action="{{ route('registrarEmpresas.store') }}" method="POST">
                 {!!csrf_field()!!}
