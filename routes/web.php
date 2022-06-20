@@ -46,3 +46,6 @@ Route::put('/actualizar_contacto/{id}','Empresas\registrarEmpresas@update')->nam
 
 //Ruta Eliminar contacto
 Route::delete('/eliminar_contacto/{id}','Empresas\registrarEmpresas@destroy')->name('eliminarcontacto.delete');
+
+//Ruta insertar datos fiscales
+Route::post('/registrar_datos','Empresas\registrarEmpresas@store3')->name('registrarDatos.store');

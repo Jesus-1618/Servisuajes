@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\rempresas;
 use App\Http\Requests\registrarcontactoempresa;
 use App\Http\Requests\actualizar_contacto;
+use App\Http\Requests\datosfiscales;
 use DB;
 
 class registrarEmpresas extends Controller
@@ -58,7 +59,22 @@ class registrarEmpresas extends Controller
             'correo' => $request1 ->input('correo'),
             'celular' => $request1 ->input('celular'),
             'telefono' => $request1 ->input('telefono'),
+            'ext' => $request1 ->input('ext'),
+            'telefono2' => $request1 ->input('telefono2'),
+            'ext2' => $request1 ->input('ext2'),
+            'comentario' => $request1 ->input('comentario'),
             'empresa' => $request1 ->input('empresa')
+        ]);
+        return redirect()->route('registrarEmpresas.create')->with('Exito1','Datos Guardados Correctamente');
+    }
+
+    public function store3(datosfiscales $request3)
+    {
+        DB::table('datos_fiscales')->insert([
+            'rfc' => $request3 ->input('rfc'),
+            'razon_social' => $request3 ->input('razon_social'),
+            'correo_facturacion' => $request3 ->input('correo_facturacion'),
+            'empresa' => $request3 ->input('empresa'),
         ]);
         return redirect()->route('registrarEmpresas.create')->with('Exito1','Datos Guardados Correctamente');
     }
@@ -105,6 +121,10 @@ class registrarEmpresas extends Controller
             'correo' => $request2 ->input('correo'),
             'celular' => $request2 ->input('celular'),
             'telefono' => $request2 ->input('telefono'),
+            'ext' => $request2 ->input('ext'),
+            'telefono2' => $request2 ->input('telefono2'),
+            'ext2' => $request2 ->input('ext2'),
+            'comentario' => $request2 ->input('comentario'),
         ]);
 
         return redirect()->route('registrarEmpresas.create')->with('Exito2','Datos Actualizados Correctamente');

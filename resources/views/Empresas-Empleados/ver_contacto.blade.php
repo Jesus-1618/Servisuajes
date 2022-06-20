@@ -8,14 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>  
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.css"/> 
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
     <title>Document</title>
 </head>
 <body>
 
     <div class="container">
         <h1 style="color: #1868d1 ">Contactos registrados</h1>
-        <table class="table table-striped table-bordered table-sm mt-2">
+        <table id="tableContacto" class="table table-striped table-bordered table-sm mt-2">
             <thead>
               <tr>
                 <th scope="col">Nombre</th>
@@ -23,6 +24,10 @@
                 <th scope="col">Correo</th>
                 <th scope="col">Celular</th>
                 <th scope="col">Teléfono</th>
+                <th scope="col">Ext</th>
+                <th scope="col">Teléfono 2</th>
+                <th scope="col">Ext 2</th>
+                <th scope="col">Comentario</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
@@ -35,6 +40,10 @@
                         <td>{{$DI->correo}}</td>
                         <td>{{$DI->celular}}</td>
                         <td>{{$DI->telefono}}</td>
+                        <td>{{$DI->ext}}</td>
+                        <td>{{$DI->telefono2}}</td>
+                        <td>{{$DI->ext2}}</td>
+                        <td>{{$DI->comentario}}</td>
                         <!--Modal editar-->
                         <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal {{ $DI->id }}">
                             Click aquí!
@@ -87,6 +96,30 @@
                                         <div class="col-6">
                                             <label for="">Teléfono:</label>
                                             <input class="form-control" type="number" name="telefono"  aria-label="default input example" value="{{ $DI->telefono }}">
+                                            {!! $errors->first('telefono', '<span class="text-danger">:message</span>') !!}
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">Ext:</label>
+                                            <input class="form-control" type="number" name="ext"  aria-label="default input example" value="{{ $DI->ext }}">
+                                            {!! $errors->first('empresa', '<span class="text-danger">:message</span>') !!}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-6">
+                                            <label for="">Teléfono 2:</label>
+                                            <input class="form-control" type="number" name="telefono2"  aria-label="default input example" value="{{ $DI->telefono2 }}">
+                                            {!! $errors->first('telefono', '<span class="text-danger">:message</span>') !!}
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="">Ext 2:</label>
+                                            <input class="form-control" type="number" name="ext2"  aria-label="default input example" value="{{ $DI->ext2 }}">
+                                            {!! $errors->first('empresa', '<span class="text-danger">:message</span>') !!}
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col">
+                                            <label for="">Comentario:</label>
+                                            <input class="form-control" type="text" name="comentario"  aria-label="default input example" value="{{ $DI->comentario }}">
                                             {!! $errors->first('telefono', '<span class="text-danger">:message</span>') !!}
                                         </div>
                                         <div class="col d-none">
@@ -189,6 +222,22 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <!-- JAVA DATA TABLE -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+          var table = $('#tableContacto').DataTable( {
+            "scrollX": true,
+            pageLength : 5,
+            lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]
+          } )
+          $('.dataTables_length').addClass('bs-select');
+        } );
+    </script>
 </body>
 </html>
 
